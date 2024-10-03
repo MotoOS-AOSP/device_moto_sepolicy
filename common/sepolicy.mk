@@ -10,26 +10,26 @@ endif
 endif
 
 SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += \
-    device/blaze/sepolicy/common/public
+    device/moto/sepolicy/common/public
 
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    device/blaze/sepolicy/common/private
+    device/moto/sepolicy/common/private
 
 ifeq ($(TARGET_USES_PREBUILT_VENDOR_SEPOLICY), true)
 SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += \
-    device/blaze/sepolicy/common/dynamic \
-    device/blaze/sepolicy/common/system \
+    device/moto/sepolicy/common/dynamic \
+    device/moto/sepolicy/common/system \
     hardware/google/pixel-sepolicy/flipendo \
     hardware/google/pixel-sepolicy/turbo_adapter
 else
 BOARD_VENDOR_SEPOLICY_DIRS += \
-    device/blaze/sepolicy/common/dynamic \
-    device/blaze/sepolicy/common/vendor \
+    device/moto/sepolicy/common/dynamic \
+    device/moto/sepolicy/common/vendor \
     hardware/google/pixel-sepolicy/flipendo \
     hardware/google/pixel-sepolicy/turbo_adapter
 endif
 
 # Include atv rules on atv product
 ifeq ($(PRODUCT_IS_ATV), true)
-include device/blaze/sepolicy/atv/sepolicy.mk
+include device/moto/sepolicy/atv/sepolicy.mk
 endif
