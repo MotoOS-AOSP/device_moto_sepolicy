@@ -1,27 +1,19 @@
-# Definir el tipo com_motorola_gamemode_app para la aplicación com.motorola.gamemode
-type com_motorola_gamemode_app;
+# Definir el contexto de la aplicación com.motorola.gamemode como un tipo platform_app
+typeattribute com_motorola_gamemode_app platform_app;
 
-# Definir el tipo game_service_34_0
-type game_service_34_0;
-
-# Permitir que com.motorola.gamemode acceda a game_service_34_0 a través del service_manager
-allow com_motorola_gamemode_app game_service_34_0:service_manager { add find };
-
-# Permitir que com.motorola.gamemode realice llamadas Binder al game_service_34_0
-allow com_motorola_gamemode_app game_service_34_0:binder { call transfer };
-
-# Permitir acceso a archivos relacionados con vendor_default_prop
+# Permitir que com.motorola.gamemode acceda a los archivos en vendor_default_prop
 allow com_motorola_gamemode_app vendor_default_prop:file { open getattr map read };
 
-# (Opcional) Si necesitas permisos adicionales para leer y escribir en vendor_default_prop
+# Permitir lectura y escritura si se requiere en archivos del vendor
 allow com_motorola_gamemode_app vendor_default_prop:file { read write };
 
-# Permitir el acceso a otros archivos en tmpfs si es necesario
-allow com_motorola_gamemode_app tmpfs:file { getattr open read write map };
-
-# Permitir que com.motorola.gamemode acceda a propiedades del sistema
+# Permitir acceso a los servicios de propiedades (propiedades de sistema)
 allow com_motorola_gamemode_app default_prop:property_service { set };
 
-# Si el gamemode necesita acceder a directorios de vendor, también permitimos el acceso
+# Si la aplicación necesita acceder a directorios de vendor
 allow com_motorola_gamemode_app vendor_file:dir { read search open };
+
+# Si se necesita acceso a otras clases de archivos
+# (como podría ser tmpfs u otros recursos que uses en vendor, dependerá de los logs)
+allow com_motorola_gamemode_app tmpfs:file { getattr open read write map };
 
